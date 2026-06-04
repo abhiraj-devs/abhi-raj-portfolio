@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <radialGradient id="planet-grad" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#ea4884" />
+      <stop offset="70%" stop-color="#7a57db" />
+      <stop offset="100%" stop-color="#161a31" />
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Cyber Planet Core -->
+  <circle cx="200" cy="200" r="80" fill="url(#planet-grad)" filter="url(#glow)" />
+  <!-- Diagonal Ring 1 -->
+  <ellipse cx="200" cy="200" rx="140" ry="15" fill="none" stroke="#33c2cc" stroke-width="3.5" transform="rotate(-25 200 200)" filter="url(#glow)" stroke-dasharray="20 10" />
+  <!-- Diagonal Ring 2 -->
+  <ellipse cx="200" cy="200" rx="110" ry="10" fill="none" stroke="#ea4884" stroke-width="2" transform="rotate(-25 200 200)" />
+</svg>

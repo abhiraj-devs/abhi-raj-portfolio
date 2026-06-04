@@ -1,85 +1,71 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { twMerge } from "tailwind-merge";
-export const FlipWords = ({ words, duration = 3000, className }) => {
-  const [currentWord, setCurrentWord] = useState(words[0]);
-  const [isAnimating, setIsAnimating] = useState(false);
 
-  // thanks for the fix Julian - https://github.com/Julian-AT
-  const startAnimation = useCallback(() => {
-    const word = words[words.indexOf(currentWord) + 1] || words[0];
-    setCurrentWord(word);
-    setIsAnimating(true);
-  }, [currentWord, words]);
+export const FlipWords = ({ words, duration = 3000, className, style }) => {
+  const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
-    if (!isAnimating)
-      setTimeout(() => {
-        startAnimation();
-      }, duration);
-  }, [isAnimating, duration, startAnimation]);
+    const timer = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % words.length);
+    }, duration);
+    return () => clearInterval(timer);
+  }, [words, duration]);
+
+  const currentWord = words[wordIndex];
 
   return (
-    <AnimatePresence
-      onExitComplete={() => {
-        setIsAnimating(false);
-      }}
-    >
+    <AnimatePresence mode="wait">
       <motion.div
-        initial={{
-          opacity: 0,
-          y: 10,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 100,
-          damping: 10,
-        }}
-        exit={{
-          opacity: 0,
-          y: -40,
-          x: 40,
-          filter: "blur(8px)",
-          scale: 2,
-          position: "absolute",
-        }}
-        className={twMerge("z-10 inline-block relative text-left", className)}
         key={currentWord}
+        className="z-10 inline-block relative text-left"
+        style={style}
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 1 }}
       >
-        {/* edit suggested by Sajal: https://x.com/DewanganSajal */}
-        {currentWord.split(" ").map((word, wordIndex) => (
-          <motion.span
-            key={word + wordIndex}
-            initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{
-              delay: wordIndex * 0.3,
-              duration: 0.3,
-            }}
-            className="inline-block whitespace-nowrap"
-          >
-            {word.split("").map((letter, letterIndex) => (
-              <motion.span
-                key={word + letterIndex}
-                initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{
-                  delay: wordIndex * 0.3 + letterIndex * 0.05,
-                  duration: 0.2,
-                }}
-                className="inline-block"
-              >
-                {letter}
-              </motion.span>
-            ))}
-            <span className="inline-block">&nbsp;</span>
-          </motion.span>
-        ))}
+        {currentWord.split("").map((letter, i) => {
+          // Random-looking but deterministic scatter values per letter
+          const seed = (i * 137.508 + wordIndex * 31) % 360;
+          const seedRad = (seed * Math.PI) / 180;
+          const particleScale = 0.04 + (i % 5) * 0.015; // tiny final scale
+
+          return (
+            <motion.span
+              key={`${currentWord}-${i}`}
+              initial={{
+                opacity: 0,
+                scale: particleScale,
+                filter: "blur(14px)",
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                filter: "blur(0px)",
+              }}
+              exit={{
+                opacity: 0,
+                scale: particleScale,
+                filter: "blur(16px)",
+                transition: {
+                  duration: 0.38,
+                  ease: "easeIn",
+                  delay: i * 0.018,
+                },
+              }}
+              transition={{
+                opacity: { duration: 0.4, ease: "easeOut", delay: i * 0.022 },
+                scale: { duration: 0.45, ease: "easeOut", delay: i * 0.022 },
+                filter: { duration: 0.4, ease: "easeOut", delay: i * 0.022 },
+              }}
+              className={twMerge("inline-block", className)}
+              style={{ display: "inline-block", transformOrigin: "center", ...style }}
+            >
+              {letter === " " ? "\u00a0" : letter}
+            </motion.span>
+          );
+        })}
       </motion.div>
     </AnimatePresence>
   );

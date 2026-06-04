@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" width="100%" height="100%" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="mount-grad-3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#161a31" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#030412" stop-opacity="1" />
+    </linearGradient>
+  </defs>
+  <!-- Low poly mountains -->
+  <path d="M 0 320 L 0 250 L 150 180 L 350 260 L 550 140 L 700 220 L 950 100 L 1150 240 L 1300 160 L 1440 230 L 1440 320 Z" fill="url(#mount-grad-3)" stroke="#5c33cc" stroke-width="2.5" />
+  <!-- Poly grid lines -->
+  <path d="M 150 180 L 350 320 M 550 140 L 550 320 M 950 100 L 950 320 M 1300 160 L 1150 320" stroke="#5c33cc" stroke-width="1.2" stroke-opacity="0.4" />
+</svg>

@@ -14,8 +14,8 @@ function Navigation() {
         </a>
       </li>
       <li className="nav-li">
-        <a className="nav-link" href="#work">
-          Work
+        <a className="nav-link" href="#education">
+          Education
         </a>
       </li>
       <li className="nav-li">
@@ -34,9 +34,10 @@ const Navbar = () => {
         <div className="flex items-center justify-between py-2 sm:py-0">
           <a
             href="/"
-            className="text-xl font-bold transition-colors text-neutral-400 hover:text-white"
+            className="text-xl font-bold transition-colors text-neutral-400 hover:text-white flex items-center gap-2 py-3"
           >
-            Ali
+            <img src="/logo.svg" className="w-7 h-7 hover:rotate-12 transition-transform duration-300" alt="Abhi Logo" />
+            <span>Abhi</span>
           </a>
           <button
             onClick={() => setIsOpen(!isOpen)}

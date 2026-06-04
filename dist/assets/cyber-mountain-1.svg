@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" width="100%" height="100%" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="mount-grad-1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#06091f" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#030412" stop-opacity="1" />
+    </linearGradient>
+  </defs>
+  <path d="M 0 320 L 0 290 L 300 230 L 600 300 L 850 210 L 1100 280 L 1350 220 L 1440 260 L 1440 320 Z" fill="url(#mount-grad-1)" stroke="#33c2cc" stroke-width="3" />
+  <path d="M 300 230 L 300 320 M 850 210 L 850 320 L 600 320" stroke="#33c2cc" stroke-width="1.5" stroke-opacity="0.4" />
+</svg>

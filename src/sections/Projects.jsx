@@ -2,6 +2,8 @@ import { useState } from "react";
 import Project from "../components/Project";
 import { myProjects } from "../constants";
 import { motion, useMotionValue, useSpring } from "motion/react";
+import { Particles } from "../components/Particles";
+
 const Projects = () => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -14,9 +16,17 @@ const Projects = () => {
   const [preview, setPreview] = useState(null);
   return (
     <section
+      id="projects"
       onMouseMove={handleMouseMove}
       className="relative c-space section-spacing"
     >
+      <Particles
+        className="absolute inset-0 -z-50"
+        quantity={100}
+        ease={80}
+        color={"#ffffff"}
+        refresh
+      />
       <h2 className="text-heading">My Selected Projects</h2>
       <div className="bg-gradient-to-r from-transparent via-neutral-700 to-transparent mt-12 h-[1px] w-full" />
       {myProjects.map((project) => (

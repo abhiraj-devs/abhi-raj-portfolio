@@ -1,223 +1,81 @@
 export const myProjects = [
   {
     id: 1,
-    title: "E-commerce Platform",
+    title: "Skill Share Board",
     description:
-      "Facilitates purchases from international websites like Amazon and eBay, allowing customers to shop from these sites and have products delivered domestically.",
+      "A peer-to-peer exchange marketplace enabling students to showcase, share, and monetize skills.",
     subDescription: [
-      "Built a scalable application with ASP.NET Core MVC, integrating global platforms like Amazon for domestic delivery.",
-      "Implemented secure authentication and database management using ASP.NET Core Identity and Entity Framework Core.",
-      "Designed a responsive frontend with Tailwind CSS, enhancing user experience.",
-      "Added payment systems, localization, and product filtering for functionality improvements.",
+      "Features interactive service listings, request boards, real-time messaging, and personalized dashboards.",
+      "Built with Next.js, React, Tailwind CSS, MongoDB, and Firebase Authentication.",
     ],
-    href: "",
+    href: "https://skillsharer.vercel.app/",
     logo: "",
-    image: "/assets/projects/accessories.jpg",
+    image: "/assets/projects/skillshare.png",
     tags: [
       {
         id: 1,
-        name: "C#",
-        path: "/assets/logos/csharp.svg",
+        name: "Next.js",
+        path: "/assets/logos/vitejs.svg",
       },
       {
         id: 2,
-        name: ".Net",
-        path: "/assets/logos/dotnet.svg",
+        name: "React.js",
+        path: "/assets/logos/react.svg",
       },
       {
         id: 3,
-        name: "Ef Core",
-        path: "/assets/logos/efcore.png",
+        name: "Tailwind CSS",
+        path: "/assets/logos/tailwindcss.svg",
       },
       {
         id: 4,
-        name: "TailwindCSS",
-        path: "/assets/logos/tailwindcss.svg",
+        name: "TypeScript",
+        path: "/assets/logos/git.svg",
+      },
+      {
+        id: 5,
+        name: "Firebase",
+        path: "/assets/logos/auth0.svg",
       },
     ],
   },
   {
     id: 2,
-    title: "Authentication & Authorization System",
+    title: "NaviSafe",
     description:
-      "A secure authentication and authorization system using Auth0 for seamless user management.",
+      "An AI-powered safety navigation system designed to help travelers identify and avoid accident black spots.",
     subDescription: [
-      "Integrated Auth0 for authentication, supporting OAuth, JWT, and multi-factor authentication.",
-      "Implemented role-based access control (RBAC) for fine-grained user permissions.",
-      "Developed a React-based frontend with Tailwind CSS for a sleek user experience.",
-      "Connected to a secure SQLite database for user data storage.",
+      "Features geospatial route planning, real-time Leaflet.js maps, GPS-based warnings, and custom Gemini AI briefings.",
+      "Built with Next.js, OSRM API, Firebase Firestore, and Google Gemini Genkit for contextual insights.",
     ],
-    href: "",
+    href: "https://navisafeapp.vercel.app/",
     logo: "",
-    image: "/assets/projects/auth-system.jpg",
+    image: "/assets/projects/navisafe.png",
     tags: [
       {
         id: 1,
-        name: "Auth0",
-        path: "/assets/logos/auth0.svg",
-      },
-      {
-        id: 2,
-        name: "React",
-        path: "/assets/logos/react.svg",
-      },
-      {
-        id: 3,
-        name: "SQLite",
-        path: "/assets/logos/sqlite.svg",
-      },
-      {
-        id: 4,
-        name: "TailwindCSS",
-        path: "/assets/logos/tailwindcss.svg",
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: "Blazor Web App",
-    description:
-      "A modern, interactive web application built with Blazor WebAssembly and .NET Core.",
-    subDescription: [
-      "Developed a fully interactive Single Page Application (SPA) using Blazor WebAssembly.",
-      "Implemented API interactions using .NET Core for a robust backend.",
-      "Designed responsive UI components with Tailwind CSS for an enhanced UX.",
-      "Integrated SQLite for efficient client-side database storage.",
-    ],
-    href: "",
-    logo: "",
-    image: "/assets/projects/blazor-app.jpg",
-    tags: [
-      {
-        id: 1,
-        name: "Blazor",
-        path: "/assets/logos/blazor.svg",
-      },
-      {
-        id: 2,
-        name: ".NET Core",
-        path: "/assets/logos/dotnetcore.svg",
-      },
-      {
-        id: 3,
-        name: "SQLite",
-        path: "/assets/logos/sqlite.svg",
-      },
-      {
-        id: 4,
-        name: "TailwindCSS",
-        path: "/assets/logos/tailwindcss.svg",
-      },
-    ],
-  },
-  {
-    id: 4,
-    title: "C++ Game Engine",
-    description:
-      "A lightweight C++ game engine designed for 2D and 3D game development.",
-    subDescription: [
-      "Built a powerful rendering engine using OpenGL and C++.",
-      "Developed a physics engine with collision detection and particle effects.",
-      "Implemented a scripting system for easy game customization.",
-      "Optimized performance with multi-threading and efficient memory management.",
-    ],
-    href: "",
-    logo: "",
-    image: "/assets/projects/game-engine.jpg",
-    tags: [
-      {
-        id: 1,
-        name: "C++",
-        path: "/assets/logos/cplusplus.svg",
-      },
-      {
-        id: 2,
-        name: "C#",
-        path: "/assets/logos/csharp.svg",
-      },
-      {
-        id: 3,
-        name: "Git",
-        path: "/assets/logos/git.svg",
-      },
-      {
-        id: 4,
-        name: "Microsoft",
-        path: "/assets/logos/microsoft.svg",
-      },
-    ],
-  },
-  {
-    id: 5,
-    title: "WordPress Custom Theme",
-    description:
-      "A fully customizable WordPress theme optimized for performance and SEO.",
-    subDescription: [
-      "Developed a responsive WordPress theme using HTML5, CSS3, and JavaScript.",
-      "Integrated Tailwind CSS for modern styling and UI enhancements.",
-      "Optimized SEO and page speed using Vite.js for fast builds.",
-      "Implemented custom widgets and plugin compatibility for extended functionality.",
-    ],
-    href: "",
-    logo: "",
-    image: "/assets/projects/wordpress-theme.jpg",
-    tags: [
-      {
-        id: 1,
-        name: "WordPress",
-        path: "/assets/logos/wordpress.svg",
-      },
-      {
-        id: 2,
-        name: "HTML5",
-        path: "/assets/logos/html5.svg",
-      },
-      {
-        id: 3,
-        name: "CSS3",
-        path: "/assets/logos/css3.svg",
-      },
-      {
-        id: 4,
-        name: "Vite.js",
+        name: "Next.js",
         path: "/assets/logos/vitejs.svg",
       },
-    ],
-  },
-  {
-    id: 6,
-    title: "Online Learning Platform",
-    description:
-      "A web application that allows users to enroll in courses, watch video lectures, and take quizzes.",
-    subDescription: [
-      "Built using Blazor WebAssembly for a seamless SPA experience.",
-      "Implemented video streaming with Azure Media Services.",
-      "Added a quiz system with dynamic question generation and real-time grading.",
-      "Integrated Stripe API for secure payment processing.",
-    ],
-    href: "",
-    logo: "",
-    image: "/assets/projects/elearning.jpg",
-    tags: [
-      {
-        id: 1,
-        name: "Blazor",
-        path: "/assets/logos/blazor.svg",
-      },
       {
         id: 2,
-        name: "Azure",
+        name: "Leaflet.js",
         path: "/assets/logos/azure.svg",
       },
       {
         id: 3,
-        name: "Stripe",
-        path: "/assets/logos/stripe.svg",
+        name: "Firebase",
+        path: "/assets/logos/auth0.svg",
       },
       {
         id: 4,
-        name: "TailwindCSS",
-        path: "/assets/logos/tailwindcss.svg",
+        name: "Gemini AI",
+        path: "/assets/logos/microsoft.svg",
+      },
+      {
+        id: 5,
+        name: "TypeScript",
+        path: "/assets/logos/git.svg",
       },
     ],
   },
@@ -225,104 +83,130 @@ export const myProjects = [
 
 export const mySocials = [
   {
-    name: "WhatsApp",
-    href: "",
-    icon: "/assets/socials/whatsApp.svg",
+    name: "Github",
+    href: "https://github.com/abhiraj-devs",
+    icon: "/assets/socials/github.svg",
   },
   {
     name: "Linkedin",
-    href: "https://www.linkedin.com/in/ali-sanati/",
+    href: "https://www.linkedin.com/in/abhiraj-dev",
     icon: "/assets/socials/linkedIn.svg",
   },
   {
     name: "Instagram",
-    href: "https://www.instagram.com/ali.sanatidev/reels/",
+    href: "https://www.instagram.com/mr.changemaker?igsh=ZDNteWI5ODI0Y3h0",
     icon: "/assets/socials/instagram.svg",
   },
 ];
 
-export const experiences = [
+export const education = [
   {
-    title: "Software Developer",
-    job: "Security & Defense Projects",
-    date: "2021-2023",
+    title: "B.Tech Computer Science & Engineering",
+    job: "College of Engineering Chengannur",
+    date: "2024 - 2027",
     contents: [
-      "Enhanced application security and developed new features, adhering to standards set by the Passive Defense Organization and National Cyberspace Center.",
-      "Designed and implemented intuitive map interfaces using MapsUI, enhancing user experience and enabling seamless interactive map integration.",
-      "Developed applications for industrial automation, leveraging C++ and the Fatek API for PLC communication.",
-      "Enhanced responsiveness and usability of applications using Windows Forms and WPF frameworks.",
-      "Executed XML to SVG conversions using X-DOM, ensuring dynamic and efficient data visualization.",
+      "Focusing on software development, database design, computer networks, and advanced software engineering principles.",
+      "Participating in student innovation hubs, tech cells, and leading community outreach programs.",
     ],
   },
   {
-    title: "Back-End Developer",
-    job: "Car Manufacture",
-    date: "2023-2024",
+    title: "Diploma in Cyber Forensics & Info Security",
+    job: "College of Engineering Aranmula",
+    date: "2021 - 2024",
     contents: [
-      "Engineered systems for large-scale data ingestion and analysis, ensuring efficient data processing and storage.",
-      "Developed back-end systems enabling vehicle-to-cloud communication for telemetry, diagnostics, and remote control:",
-      "✅ Implemented secure APIs, following ISO 26262 automotive safety standards.",
-      "✅ Ensured data privacy for customers and partners through industry-compliant protocols.",
-      "✅ Delivered remote features like over-the-air updates, real-time tracking, and remote start capabilities.",
+      "Studied digital forensic methodologies, network penetration testing, system vulnerability assessment, and cryptography.",
+      "Hands-on practice with specialized security auditing and computer forensic analysis tools.",
     ],
   },
   {
-    title: "Freelance Developer",
-    job: "Self-Employed",
-    date: "2025-Present",
+    title: "Higher Secondary Education",
+    job: "G H S S Mulakkuzha",
+    date: "2019 - 2021",
     contents: [
-      "Created a personal portfolio using Three.js, React, Vite, and WebAPI to showcase technical expertise.",
-      "Continuously enhancing technical skills and expanding expertise in modern web development and back-end technologies.",
+      "Academic stream focused on Physics, Chemistry, Mathematics, and Computer Science.",
+      "Developed basic coding logic and scientific foundational principles.",
+    ],
+  },
+  {
+    title: "Secondary Education",
+    job: "M M A R School Chengannur",
+    date: "2019",
+    contents: [
+      "Completed secondary education with excellent academic results.",
+      "Engaged in science club activities and local community events.",
     ],
   },
 ];
-export const reviews = [
+
+export const internships = [
   {
-    name: "Jack",
-    username: "@jack",
-    body: "I've never seen anything like this before. It's amazing. I love it.",
-    img: "https://robohash.org/jack",
+    title: "Cyber Forensics Intern",
+    company: "Red Team Hacker Academy, Kochi",
+    date: "1 Month",
+    details: [
+      "Analyzed system logs and tracked anomalous network intrusion patterns.",
+      "Learned about digital evidence recovery, chain of custody, and forensic imaging.",
+      "Simulated forensic analysis of storage media using forensic tools.",
+    ],
   },
   {
-    name: "Jill",
-    username: "@jill",
-    body: "I don't know what to say. I'm speechless. This is amazing.",
-    img: "https://robohash.org/jill",
+    title: "Internet of Things Intern",
+    company: "College of Engineering, Aranmula",
+    date: "15 Days",
+    details: [
+      "Programmed microcontrollers and designed automated sensor communication nodes.",
+      "Assembled and tested smart IoT modules to send real-time diagnostic parameters.",
+      "Developed a prototype for a home automation logging interface.",
+    ],
+  },
+];
+
+export const certifications = [
+  {
+    name: "Introduction to Cyber Security",
+    issuer: "CISCO Network Academy",
+    description: "Completed course covering fundamentals of cyber defense, network security, and secure computing practices.",
   },
   {
-    name: "John",
-    username: "@john",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://robohash.org/john",
+    name: "Game Development Using PyGame",
+    issuer: "GUVI",
+    description: "Built and compiled 2D desktop game architectures using Python, handling asset rendering and collision math.",
   },
   {
-    name: "Alice",
-    username: "@alice",
-    body: "This is hands down the best thing I've experienced. Highly recommend!",
-    img: "https://robohash.org/alice",
+    name: "Cyber Security Workshop",
+    issuer: "College of Engineering, Aranmula",
+    description: "Attended intensive seminars on real-world vulnerability assessment and ethical hacking tools.",
   },
   {
-    name: "Bob",
-    username: "@bob",
-    body: "Incredible work! The attention to detail is phenomenal.",
-    img: "https://robohash.org/bob",
+    name: "Personality Development Training Programme",
+    issuer: "Kerala Knowledge Economy Mission",
+    description: "Participated in modules targeting interpersonal communication, team alignment, and professional presentation.",
+  },
+];
+
+export const extracurriculars = [
+  {
+    role: "Community Lead",
+    organization: "IEDC College of Engineering Chengannur",
+    date: "2025 - 2027",
+    description: "Leading student entrepreneurship and technology initiatives, driving hackathons, workshops, and innovation bootcamps.",
   },
   {
-    name: "Charlie",
-    username: "@charlie",
-    body: "This exceeded all my expectations. Absolutely stunning!",
-    img: "https://robohash.org/charlie",
+    role: "NSS Volunteer & Energy Cell Unit Coordinator",
+    organization: "College of Engineering Chengannur",
+    date: "2024 - 2026",
+    description: "Coordinating sustainability campaigns, energy conservation audits, and state-wide community service projects.",
   },
   {
-    name: "Dave",
-    username: "@dave",
-    body: "Simply breathtaking. The best decision I've made in a while.",
-    img: "https://robohash.org/dave",
+    role: "Career Ambassador",
+    organization: "College of Engineering Aranmula",
+    date: "2023 - 2024",
+    description: "Represented the 'Connect Career To Campus' state government initiative to facilitate career options and job fairs.",
   },
   {
-    name: "Eve",
-    username: "@eve",
-    body: "So glad I found this. It has changed the game for me.",
-    img: "https://robohash.org/eve",
+    role: "National Service Scheme Volunteer",
+    organization: "G H S S Mulakkuzha",
+    date: "2019 - 2021",
+    description: "Organized local health camps, blood donation drives, and environment conservation runs.",
   },
 ];

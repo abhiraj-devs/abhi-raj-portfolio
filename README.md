@@ -4,7 +4,7 @@ A modern, interactive, and fully responsive personal portfolio website designed 
 
 Built with an immersive dark cosmic theme, featuring 3D interactive background elements, animated bento-grid layouts, and seamless smooth scrolling.
 
-![Portfolio Preview](public/assets/vector.png)
+
 
 ## 🚀 Features
 

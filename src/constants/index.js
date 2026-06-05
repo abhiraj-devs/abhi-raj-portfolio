@@ -97,6 +97,11 @@ export const mySocials = [
     href: "https://www.instagram.com/mr.changemaker?igsh=ZDNteWI5ODI0Y3h0",
     icon: "/assets/socials/instagram.svg",
   },
+  {
+    name: "Twitter",
+    href: "https://twitter.com/abhirajdevs",
+    icon: "/assets/socials/twitter.svg",
+  },
 ];
 
 export const education = [

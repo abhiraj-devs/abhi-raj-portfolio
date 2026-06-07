@@ -25,10 +25,10 @@ function pickCol() { return COLORS[Math.floor(Math.random() * COLORS.length)]; }
 // Adaptive count based on device performance
 function particleCount() {
   const w = window.innerWidth;
-  if (w < 480)  return 350;
-  if (w < 768)  return 550;
-  if (w < 1280) return 900;
-  return 1400;
+  if (w < 480)  return 100;
+  if (w < 768)  return 150;
+  if (w < 1280) return 200;
+  return 300;
 }
 
 function connectionDist() {
@@ -115,9 +115,40 @@ const CosmicParticleField = () => {
     const ctx = canvas.getContext("2d");
     const S = stateRef.current;
 
+    /* ── Background Cache ───────────────────────────────────── */
+    const bgCanvas = document.createElement('canvas');
+    const bgCtx = bgCanvas.getContext('2d', { alpha: false });
+
     const resize = () => {
       S.w = canvas.width  = window.innerWidth;
       S.h = canvas.height = window.innerHeight;
+      
+      bgCanvas.width = S.w;
+      bgCanvas.height = S.h;
+      
+      // Draw background ONCE to offscreen canvas
+      const bg = bgCtx.createLinearGradient(0, 0, S.w, S.h);
+      bg.addColorStop(0,    "#010614");
+      bg.addColorStop(0.45, "#020b24");
+      bg.addColorStop(1,    "#010514");
+      bgCtx.fillStyle = bg;
+      bgCtx.fillRect(0, 0, S.w, S.h);
+
+      const nebula = (cx, cy, rad, r, g, b, a) => {
+        const gr = bgCtx.createRadialGradient(cx, cy, 0, cx, cy, rad);
+        gr.addColorStop(0, `rgba(${r},${g},${b},${a})`);
+        gr.addColorStop(1, "rgba(0,0,0,0)");
+        bgCtx.fillStyle = gr;
+        bgCtx.beginPath();
+        bgCtx.arc(cx, cy, rad, 0, Math.PI * 2);
+        bgCtx.fill();
+      };
+
+      nebula(S.w * 0.5,  S.h * 0.5,  S.w * 0.55, 20, 40, 130, 0.22);
+      nebula(S.w * 0.15, S.h * 0.3,  S.w * 0.3,  40, 20, 160, 0.12);
+      nebula(S.w * 0.85, S.h * 0.6,  S.w * 0.3,  20, 60, 180, 0.12);
+      nebula(S.w * 0.5,  S.h * 0.85, S.w * 0.28, 60, 20, 140, 0.09);
+
       const n = particleCount();
       S.particles = Array.from({ length: n }, () => new Dot(S.w, S.h));
     };
@@ -128,33 +159,6 @@ const CosmicParticleField = () => {
     window.addEventListener("mousemove",  onMove);
     window.addEventListener("mouseleave", onLeave);
     window.addEventListener("resize",     resize);
-
-    /* ── Background ─────────────────────────────────────────── */
-    const drawBg = (w, h) => {
-      // Primary deep space gradient
-      const bg = ctx.createLinearGradient(0, 0, w, h);
-      bg.addColorStop(0,    "#010614");   // top-left: near black
-      bg.addColorStop(0.45, "#020b24");   // centre: deep navy
-      bg.addColorStop(1,    "#010514");   // bottom-right: near black
-      ctx.fillStyle = bg;
-      ctx.fillRect(0, 0, w, h);
-
-      // Nebula glow blobs (static, repainted each frame for nebula shift)
-      const nebula = (cx, cy, rad, r, g, b, a) => {
-        const gr = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad);
-        gr.addColorStop(0, `rgba(${r},${g},${b},${a})`);
-        gr.addColorStop(1, "rgba(0,0,0,0)");
-        ctx.fillStyle = gr;
-        ctx.beginPath();
-        ctx.arc(cx, cy, rad, 0, Math.PI * 2);
-        ctx.fill();
-      };
-
-      nebula(w * 0.5,  h * 0.5,  w * 0.55, 20, 40, 130, 0.22);  // central blue glow
-      nebula(w * 0.15, h * 0.3,  w * 0.3,  40, 20, 160, 0.12);  // left purple
-      nebula(w * 0.85, h * 0.6,  w * 0.3,  20, 60, 180, 0.12);  // right blue
-      nebula(w * 0.5,  h * 0.85, w * 0.28, 60, 20, 140, 0.09);  // bottom violet
-    };
 
     /* ── Connections ────────────────────────────────────────── */
     const drawEdges = (particles, connDist) => {
@@ -200,8 +204,7 @@ const CosmicParticleField = () => {
       const my  = mouse.current.y;
       const cDist = connectionDist();
 
-      ctx.clearRect(0, 0, w, h);
-      drawBg(w, h);
+      ctx.drawImage(bgCanvas, 0, 0);
 
       for (const p of particles) p.update(w, h, mx, my, t);
       drawEdges(particles, cDist);

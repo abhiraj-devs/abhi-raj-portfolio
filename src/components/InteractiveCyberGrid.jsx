@@ -12,9 +12,54 @@ const InteractiveCyberGrid = () => {
     let animationFrameId;
 
     // Responsive Canvas Resizing
+    const bgCanvas = document.createElement('canvas');
+    const bgCtx = bgCanvas.getContext('2d', { alpha: false });
+
     const resizeCanvas = () => {
-      canvas.width = canvas.parentElement?.clientWidth || window.innerWidth;
-      canvas.height = canvas.parentElement?.clientHeight || window.innerHeight;
+      const w = canvas.parentElement?.clientWidth || window.innerWidth;
+      const h = canvas.parentElement?.clientHeight || window.innerHeight;
+      canvas.width = w;
+      canvas.height = h;
+      bgCanvas.width = w;
+      bgCanvas.height = h;
+
+      // Pre-draw static background to bgCanvas
+      const bgGrad = bgCtx.createLinearGradient(0, 0, 0, h);
+      bgGrad.addColorStop(0, "#030412");   // Midnight primary
+      bgGrad.addColorStop(0.5, "#06091f"); // Midnight secondary
+      bgGrad.addColorStop(1, "#161a31");   // Navy
+      bgCtx.fillStyle = bgGrad;
+      bgCtx.fillRect(0, 0, w, h);
+
+      // Draw futuristic digital grid lines (Perspective)
+      bgCtx.strokeStyle = "rgba(92, 51, 204, 0.07)"; // Royal purple grid
+      bgCtx.lineWidth = 1;
+      
+      const gridSpacing = 80;
+      const vanishingPointY = h * 0.3; // Perspective vanishing point
+
+      // Vertical perspective lines
+      const lineCount = 20;
+      for (let i = -lineCount; i <= lineCount; i++) {
+        bgCtx.beginPath();
+        const startX = w / 2 + (i * gridSpacing);
+        const endX = w / 2 + (i * gridSpacing * 3.5);
+        bgCtx.moveTo(startX, vanishingPointY);
+        bgCtx.lineTo(endX, h);
+        bgCtx.stroke();
+      }
+
+      // Horizontal lines (closer as they approach the horizon)
+      let currentY = vanishingPointY;
+      let gap = 10;
+      while (currentY < h) {
+        bgCtx.beginPath();
+        bgCtx.moveTo(0, currentY);
+        bgCtx.lineTo(w, currentY);
+        bgCtx.stroke();
+        gap *= 1.25; // exponential gap for depth perspective
+        currentY += gap;
+      }
     };
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
@@ -57,7 +102,7 @@ const InteractiveCyberGrid = () => {
     }
 
     // Initialize particles
-    const particleCount = Math.min(60, Math.floor((canvas.width * canvas.height) / 18000));
+    const particleCount = Math.min(30, Math.floor((canvas.width * canvas.height) / 36000));
     const particles = [];
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle(canvas.width, canvas.height));
@@ -86,43 +131,8 @@ const InteractiveCyberGrid = () => {
       const w = canvas.width;
       const h = canvas.height;
 
-      // Draw background gradient
-      const bgGrad = ctx.createLinearGradient(0, 0, 0, h);
-      bgGrad.addColorStop(0, "#030412");   // Midnight primary
-      bgGrad.addColorStop(0.5, "#06091f"); // Midnight secondary
-      bgGrad.addColorStop(1, "#161a31");   // Navy
-      ctx.fillStyle = bgGrad;
-      ctx.fillRect(0, 0, w, h);
-
-      // Draw futuristic digital grid lines (Perspective)
-      ctx.strokeStyle = "rgba(92, 51, 204, 0.07)"; // Royal purple grid
-      ctx.lineWidth = 1;
-      
-      const gridSpacing = 80;
-      const vanishingPointY = h * 0.3; // Perspective vanishing point
-
-      // Vertical perspective lines
-      const lineCount = 20;
-      for (let i = -lineCount; i <= lineCount; i++) {
-        ctx.beginPath();
-        const startX = w / 2 + (i * gridSpacing);
-        const endX = w / 2 + (i * gridSpacing * 3.5);
-        ctx.moveTo(startX, vanishingPointY);
-        ctx.lineTo(endX, h);
-        ctx.stroke();
-      }
-
-      // Horizontal lines (closer as they approach the horizon)
-      let currentY = vanishingPointY;
-      let gap = 10;
-      while (currentY < h) {
-        ctx.beginPath();
-        ctx.moveTo(0, currentY);
-        ctx.lineTo(w, currentY);
-        ctx.stroke();
-        gap *= 1.25; // exponential gap for depth perspective
-        currentY += gap;
-      }
+      // Draw cached background and grid
+      ctx.drawImage(bgCanvas, 0, 0);
 
       // Update and draw connections (lines)
       const maxDistance = 120;

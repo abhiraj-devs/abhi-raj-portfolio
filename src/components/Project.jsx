@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import ProjectDetails from "./ProjectDetails";
+import { motion } from "motion/react";
+import BorderGlow from "./BorderGlow";
 
 const Project = ({
   title,
@@ -8,33 +10,48 @@ const Project = ({
   href,
   image,
   tags,
-  setPreview,
 }) => {
   const [isHidden, setIsHidden] = useState(false);
   return (
     <>
-      <div
-        className="flex-wrap items-center justify-between py-10 space-y-14 sm:flex sm:space-y-0"
-        onMouseEnter={() => setPreview(image)}
-        onMouseLeave={() => setPreview(null)}
+      <motion.div
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="cursor-pointer group h-full"
+        onClick={() => setIsHidden(true)}
       >
-        <div>
-          <p className="text-2xl">{title}</p>
-          <div className="flex gap-5 mt-2 text-sand">
-            {tags.map((tag) => (
-              <span key={tag.id}>{tag.name}</span>
-            ))}
-          </div>
-        </div>
-        <button
-          onClick={() => setIsHidden(true)}
-          className="flex items-center gap-1 cursor-pointer hover-animation"
+        <BorderGlow
+          edgeSensitivity={40}
+          glowColor="338 80 60"
+          backgroundColor="rgba(255,255,255,0.05)"
+          borderRadius={16}
+          colors={['#ea4884', '#7a57db', '#33c2cc']}
+          className="h-full flex flex-col backdrop-blur-sm"
         >
-          Read More
-          <img src="assets/arrow-right.svg" className="w-5" />
-        </button>
-      </div>
-      <div className="bg-gradient-to-r from-transparent via-neutral-700 to-transparent h-[1px] w-full" />
+          <div className="flex flex-col h-full overflow-hidden rounded-2xl">
+            <div className="relative h-56 overflow-hidden flex-shrink-0">
+              <img 
+                src={image} 
+                alt={title} 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#010614] to-transparent"></div>
+              <h3 className="absolute bottom-4 left-6 text-2xl font-bold text-white group-hover:text-[#ea4884] transition-colors">{title}</h3>
+            </div>
+            
+            <div className="p-6 flex flex-col flex-grow">
+              <p className="text-gray-400 text-sm mb-6 line-clamp-2">{description}</p>
+              <div className="flex flex-wrap gap-2 mt-auto">
+                {tags.map((tag) => (
+                  <span key={tag.id} className="text-xs px-3 py-1 bg-white/10 rounded-full text-gray-300">
+                    {tag.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </BorderGlow>
+      </motion.div>
       {isHidden && (
         <ProjectDetails
           title={title}

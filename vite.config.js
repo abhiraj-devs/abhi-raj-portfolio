@@ -15,4 +15,15 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-react": ["react", "react-dom"],
+          "vendor-motion": ["motion"],
+        },
+      },
+    },
+  },
 });

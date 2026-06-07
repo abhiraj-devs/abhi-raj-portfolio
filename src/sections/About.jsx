@@ -1,4 +1,3 @@
-import { Globe } from "../components/globe";
 import CopyEmailButton from "../components/CopyEmailButton";
 import { Particles } from "../components/Particles";
 import SkillsGrid from "../components/SkillsGrid";
@@ -154,20 +153,18 @@ const About = () => (
             overflow: "hidden",
           }}
         >
-          {/* Full rotating globe background */}
+          {/* Static globe wireframe background */}
           <figure style={{
-            position: "absolute", right: "-15%", top: "-20%",
-            zIndex: 0, opacity: 0.75, pointerEvents: "none",
+            position: "absolute", right: "-10%", top: "-10%", width: "70%", height: "120%",
+            zIndex: 0, opacity: 0.15, pointerEvents: "none",
+            display: "flex", alignItems: "center", justifyItems: "center"
           }}>
-            <Globe config={{
-              width: 420, height: 420, onRender: () => {}, devicePixelRatio: 2,
-              phi: 2.1, theta: 0.18, dark: 1, diffuse: 0.4,
-              mapSamples: 16000, mapBrightness: 1.2,
-              baseColor: [0.12, 0.1, 0.25],
-              markerColor: [0.92, 0.28, 0.52],
-              glowColor: [0.2, 0.76, 0.8],
-              markers: [{ location: [9.3175, 76.6125], size: 0.14 }],
-            }} />
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "100%" }}>
+              <circle cx="50" cy="50" r="45" stroke="#6366f1" strokeWidth="1" strokeDasharray="4 4" />
+              <ellipse cx="50" cy="50" rx="45" ry="18" stroke="#6366f1" strokeWidth="1" strokeDasharray="4 4" />
+              <ellipse cx="50" cy="50" rx="18" ry="45" stroke="#6366f1" strokeWidth="1" strokeDasharray="4 4" />
+              <path d="M5 50 H 95 M 50 5 V 95" stroke="#6366f1" strokeWidth="1" strokeDasharray="4 4" />
+            </svg>
           </figure>
 
           {/* Bottom fade so text is readable */}

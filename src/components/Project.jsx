@@ -22,10 +22,11 @@ const Project = ({
       >
         <BorderGlow
           edgeSensitivity={40}
-          glowColor="338 80 60"
+          glowColor="258 90 66"
           backgroundColor="rgba(255,255,255,0.05)"
           borderRadius={16}
-          colors={['#ea4884', '#7a57db', '#33c2cc']}
+          colors={['#8b5cf6', '#8b5cf6', '#8b5cf6']}
+          fillOpacity={0}
           className="h-full flex flex-col backdrop-blur-sm"
         >
           <div className="flex flex-col h-full overflow-hidden rounded-2xl">
@@ -36,7 +37,7 @@ const Project = ({
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#010614] to-transparent"></div>
-              <h3 className="absolute bottom-4 left-6 text-2xl font-bold text-white group-hover:text-[#ea4884] transition-colors">{title}</h3>
+              <h3 className="absolute bottom-4 left-6 text-2xl font-bold text-white transition-colors">{title}</h3>
             </div>
             
             <div className="p-6 flex flex-col flex-grow">

@@ -77,22 +77,48 @@ const Navbar = () => {
   const [activeHref, setActiveHref] = useState(window.location.hash || "#home");
 
   useEffect(() => {
+    const sectionIds = navItems.map((item) => item.href.replace("#", ""));
+
+    const observers = [];
+    const visibilityMap = {};
+
+    const pickActive = () => {
+      // Pick the section with the most visibility, or the topmost visible one
+      let bestId = null;
+      let bestRatio = 0;
+      for (const id of sectionIds) {
+        const r = visibilityMap[id] || 0;
+        if (r > bestRatio) {
+          bestRatio = r;
+          bestId = id;
+        }
+      }
+      if (bestId) setActiveHref(`#${bestId}`);
+    };
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          visibilityMap[id] = entry.intersectionRatio;
+          pickActive();
+        },
+        { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+
+    // Also keep hash change sync for direct URL navigation
     const handleHashChange = () => {
       setActiveHref(window.location.hash || "#home");
     };
     window.addEventListener("hashchange", handleHashChange);
-    
-    const handleClick = (e) => {
-      const target = e.target.closest("a");
-      if (target && target.hash) {
-        setActiveHref(target.hash);
-      }
-    };
-    document.addEventListener("click", handleClick);
 
     return () => {
+      observers.forEach((obs) => obs.disconnect());
       window.removeEventListener("hashchange", handleHashChange);
-      document.removeEventListener("click", handleClick);
     };
   }, []);
 

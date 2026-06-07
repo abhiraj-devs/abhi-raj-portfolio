@@ -56,6 +56,13 @@ body {
   font-family: "Funnel Display", sans-serif;
   color: white;
   overflow-x: hidden;
+  /* Smooth momentum scroll on mobile */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none;
+  /* Reduce paint complexity for scroll */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .c-space {
